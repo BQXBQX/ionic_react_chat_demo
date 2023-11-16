@@ -1,0 +1,17 @@
+$title-font-family: "Kirang Haerang", cursive;
+// $title-font-size: 50px;
+$otherMessageColor: rgb(174,221,129);
+$mineMessageColor: rgb(62,188,202);
+
+@mixin TitleText {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    flex-direction: column;
+}
