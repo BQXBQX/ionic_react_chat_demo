@@ -1,0 +1,58 @@
+@import "../../scss/common.scss";
+
+.messageMineBar {
+  flex-direction: row-reverse !important;
+  margin-left: 48px;
+
+  .messageContentContainer {
+    background-color: $mineMessageColor;
+  }
+
+  .messageTextContainer {
+    margin-right: 10px !important;
+    align-items: flex-end !important;
+  }
+}
+
+.messageOthersBar {
+  margin-right: 48px;
+
+  .messageContentContainer {
+    background-color: $otherMessageColor;
+  }
+}
+
+.messageTextContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 10px;
+}
+
+.messageMineBar,
+.messageOthersBar {
+  padding: 0 10px;
+  display: flex;
+  flex-direction: row;
+
+  .messageContentContainer {
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+  }
+}
+
+img {
+  height: 48px;
+  width: 48px;
+}
+
+.messageSenderSpan,
+.messageDateContainer {
+  font-size: 12px;
+  color: gray;
+}
+
+span {
+  text-align: left;
+}

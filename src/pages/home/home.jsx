@@ -1,30 +1,42 @@
 import "./home.scss";
+import {
+  IonContent,
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonRouterLink,
+  IonButton,
+} from "@ionic/react";
+
 const Home = () => {
   const buttonStyle = {
-    innerHeight : 40 + 'px' ,
+    innerHeight: 40 + "px",
   };
   return (
     <>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Home page</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content>
-        <div className="homeContainer">
-          <div className="homeTextContainer">
-            <span className="homeText">Do you want to chat?</span>
+      <IonPage>
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>Home page</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent>
+          <div className="homeContainer">
+            <div className="homeTextContainer">
+              <span className="homeText">Do you want to chat?</span>
+              <br />
+              <span className="homeText">welcome to the BQX chat!</span>
+            </div>
             <br />
-            <span className="homeText">welcome to the BQX chat!</span>
+            <IonRouterLink href="/chat">
+              <IonButton style={buttonStyle}>
+                <span className="buttonText">Click! To chat page!</span>
+              </IonButton>
+            </IonRouterLink>
           </div>
-          <br />
-          <ion-router-link href="/chat">
-            <ion-button style={buttonStyle}>
-              <span className="buttonText">Click! To chat page!</span>
-            </ion-button>
-          </ion-router-link>
-        </div>
-      </ion-content>
+        </IonContent>
+      </IonPage>
     </>
   );
 };

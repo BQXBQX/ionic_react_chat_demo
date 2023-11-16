@@ -1,32 +1,34 @@
-@import '../pages.scss';
+@import "../../scss/common.scss";
 
-.homeTextContainer{
-    margin-bottom: 4vh
+.homeTextContainer {
+  margin-bottom: 4vh;
 }
 
-.homeText{
-    // font-size: $title-font-size;
-    @include TitleText;
+.homeText {
+  // font-size: $title-font-size;
+  @include TitleText;
 
-    font-family: $title-font-family;
-    font-size: 9vw;
-    margin-bottom: 1vh;
+  font-family: $title-font-family;
+  font-size: 9vw;
+  margin-bottom: 1vh;
 }
 
-.buttonText{
-    font-family: $title-font-family;
-    font-size: 8vw;
-}
-
-.homeContainer{
-    width: 100%;
-    height: 100%;
-
-    @include flexCenter
+.buttonText {
+  font-family: $title-font-family;
+  font-size: 8vw;
 }
 
 .homeContainer {
-    background-image: url("../../assets/background1.jpg");
-    background-size: cover;
-    background-position: center;
-  }
+  width: 100%;
+  height: 100%;
+
+  @include flexCenter;
+}
+
+.homeContainer {
+  // background-image: url("../../assets/background1.jpg");
+  // background-size: cover;
+  // background-position: center;
+}
+
+
