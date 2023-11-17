@@ -9,8 +9,15 @@
   @include TitleText;
 
   font-family: $title-font-family;
-  font-size: 9vw;
   margin-bottom: 1vh;
+  overflow: hidden;
+  white-space: nowrap;
+  &.question{
+    font-size: 11vw;
+  }
+  &.welcome{
+    font-size: 9vw;
+  }
 }
 
 .buttonText {

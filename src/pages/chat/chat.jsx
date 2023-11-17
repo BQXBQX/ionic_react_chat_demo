@@ -1,10 +1,12 @@
 import "./chat.scss";
 import {
+  IonButtons,
   IonContent,
   IonHeader,
   IonPage,
   IonTitle,
   IonToolbar,
+  IonBackButton,
 } from "@ionic/react";
 import MessageBar from "../../components/messageBar/messageBar";
 import ChatFooter from "../../components/chatFooter/chatFooter";
@@ -214,6 +216,9 @@ const Chat = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
+        <IonButtons slot="start">
+          <IonBackButton defaultHref="/home" text=''></IonBackButton>
+        </IonButtons>
           <IonTitle>Chat page</IonTitle>
         </IonToolbar>
       </IonHeader>

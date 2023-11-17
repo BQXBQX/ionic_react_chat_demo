@@ -35,9 +35,15 @@
   color: #888;
 }
 
-ion-content {
-  /* --background: url('./assets/background1.jpg') !important;
-  --background-size: cover;
-  --background-position: center; */
-  --background: url("./assets/background1.jpg") no-repeat center center / cover !important;
+
+ion-tab-bar{
+  height: 6vh;
+}
+
+ion-textarea {
+  border-radius: 15px;
+  height: 50px;
+  text-align: left;
+  --padding-start: 10px !important;
+  --padding-end: 10px !important;
 }

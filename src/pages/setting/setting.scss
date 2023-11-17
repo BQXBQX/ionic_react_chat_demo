@@ -13,9 +13,10 @@
 }
 
 .settingTitle {
-  //   font-family: $title-font-family;
+  font-family: $title-font-family;
   @include TitleText;
   margin-bottom: 5vh;
+  font-size: 38vw;
 }
 
 .settingContainer {

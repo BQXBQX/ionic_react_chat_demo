@@ -24,9 +24,9 @@ const Home = () => {
         <IonContent>
           <div className="homeContainer">
             <div className="homeTextContainer">
-              <span className="homeText">Do you want to chat?</span>
+              <span className="homeText question">Do you want to chat?</span>
               <br />
-              <span className="homeText">welcome to the BQX chat!</span>
+              <span className="homeText welcome">welcome to the BQX chat!</span>
             </div>
             <br />
             <IonRouterLink href="/chat">
