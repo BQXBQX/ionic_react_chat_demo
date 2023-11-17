@@ -12,7 +12,6 @@
   transition: filter 300ms;
 }
 
-
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -34,4 +33,11 @@
 
 .read-the-docs {
   color: #888;
+}
+
+ion-content {
+  /* --background: url('./assets/background1.jpg') !important;
+  --background-size: cover;
+  --background-position: center; */
+  --background: url("./assets/background1.jpg") no-repeat center center / cover !important;
 }

@@ -7,6 +7,10 @@
 .homeText {
   // font-size: $title-font-size;
   @include TitleText;
+
+  font-family: $title-font-family;
+  font-size: 9vw;
+  margin-bottom: 1vh;
 }
 
 .buttonText {
@@ -22,9 +26,7 @@
 }
 
 .homeContainer {
-  // background-image: url("../../assets/background1.jpg");
-  // background-size: cover;
-  // background-position: center;
 }
+
 
 
