@@ -1,0 +1,27 @@
+@import "../../scss/common.scss";
+
+.bigIcon {
+  height: 40vw;
+  width: 40vw;
+  background-color: $otherMessageColor;
+  padding: 4vw;
+  border-radius: 15vw;
+}
+
+.imgContainer {
+  margin: 1vh 0;
+}
+
+.settingTitle {
+  //   font-family: $title-font-family;
+  @include TitleText;
+  margin-bottom: 5vh;
+}
+
+.settingContainer {
+}
+
+.settingText {
+  font-family: $title-font-family;
+  font-size: 25px;
+}

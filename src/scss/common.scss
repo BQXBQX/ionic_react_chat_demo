@@ -4,6 +4,9 @@ $otherMessageColor: rgb(174,221,129);
 $mineMessageColor: rgb(62,188,202);
 
 @mixin TitleText {
+  font-family: $title-font-family;
+  font-size: 9vw;
+  margin-bottom: 1vh;
   width: 100%;
   display: flex;
   justify-content: center;
