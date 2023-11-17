@@ -1,19 +1,22 @@
 import "./App.css";
-// import AppRouter from "./router/routerConfig";
-import { setupIonicReact } from '@ionic/react';
-import '@ionic/react/css/core.css';
-import Home from "./pages/home/home";
+import { setupIonicReact } from "@ionic/react";
+import "@ionic/react/css/core.css";
 import { IonApp } from "@ionic/react";
-import AppRouter from './router/routerConfig.jsx'
+import AppRouter from "./router/routerConfig.jsx";
+import "./themes/dark.scss";
+import "./themes/light.scss";
+import { ThemeProvider } from "./contexts/themeContext.jsx";
 
 setupIonicReact();
 
 const App = () => {
   return (
-    <IonApp>
-      <AppRouter/>
-    </IonApp>
-  )
+    <ThemeProvider>
+      <IonApp>
+        <AppRouter />
+      </IonApp>
+    </ThemeProvider>
+  ); 
 };
 
 export default App;
