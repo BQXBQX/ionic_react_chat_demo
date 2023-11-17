@@ -6,7 +6,6 @@ const messageBar = (props) => {
 
   return props.messageBarData.map((chatDateItem) => {
     if (chatDateItem.messageSender === mine) {
-      console.log("hello");
       return (
         <div className="messageMineBar" key={chatDateItem.id}>
           <IonAvatar>

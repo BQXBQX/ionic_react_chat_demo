@@ -1,16 +1,19 @@
 import "./chat.scss";
 import {
   IonContent,
-  IonFooter,
   IonHeader,
   IonPage,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
 import MessageBar from "../../components/messageBar/messageBar";
+import ChatFooter from "../../components/chatFooter/chatFooter";
+import { useState, useEffect } from "react";
 
 const Chat = () => {
-  const messageBarData = [
+  const [messageID, setMessageID] = useState(21);
+
+  const [messageBarData, setMssageBarData] = useState([
     {
       userAvatar:
         "https://i.pinimg.com/originals/b4/e5/68/b4e568cfe5ed4f76cb6db22fe5e48c7d.jpg",
@@ -174,7 +177,39 @@ const Chat = () => {
       messageContent: "What is it, Lucy? Don't keep us in suspense!",
       messageTime: "2023.11.16 16:15",
     },
-  ];
+  ]);
+
+  const [newMessageBar, setNewMessageBar] = useState("");
+
+  const handleChildData = (data) => {
+    // 在这里处理从子组件传递过来的值
+    setNewMessageBar(data);
+  };
+
+  useEffect(() => {
+    // console.log(newMessageBar);
+    if (newMessageBar !== "") {
+      const updatedMessageBarData = [
+        ...messageBarData,
+        {
+          userAvatar:
+            "https://i.pinimg.com/736x/05/a3/d5/05a3d5d8ab89e1dea64f3859454a209c.jpg",
+          id: messageID,
+          messageSender: "Mike",
+          messageContent: newMessageBar,
+          messageTime: "2023.11.15 22:07",
+        },
+      ];
+      setMssageBarData(updatedMessageBarData);
+      const updatedMessageID = messageID + 1;
+      setMessageID(updatedMessageID);
+    }
+  }, [newMessageBar]);
+
+  useEffect(() => {
+    // console.log(messageBarData);
+  }, [messageBarData]);
+
   return (
     <IonPage>
       <IonHeader>
@@ -187,11 +222,7 @@ const Chat = () => {
           <MessageBar messageBarData={messageBarData}></MessageBar>
         </div>
       </IonContent>
-      <IonFooter>
-        <IonToolbar>
-          <IonTitle>footer</IonTitle>
-        </IonToolbar>
-      </IonFooter>
+      <ChatFooter sendDataToParent={handleChildData}></ChatFooter>
     </IonPage>
   );
 };
