@@ -297,7 +297,7 @@ const Chat = () => {
     let id;
 
     do {
-      id = Math.floor(Math.random() * 1000); // 在这里设置你的 ID 范围
+      id = Math.floor(Math.random() * 10000000); // 在这里设置你的 ID 范围
     } while (usedIds.includes(id));
 
     usedIds.push(id);
