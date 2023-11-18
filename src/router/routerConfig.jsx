@@ -29,6 +29,10 @@ const AppRouter = () => {
     }
   }, []);
 
+  // useEffect(() => {
+  //   console.log(activeTab);
+  // }, [activeTab]);
+
   const IsActiveHomeTab = () => {
     if (activeTab === "home") {
       return (
