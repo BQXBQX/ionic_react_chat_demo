@@ -20,14 +20,15 @@ import Welcome from "../pages/welcome/welcome";
 const AppRouter = () => {
   const ionTabsRef = useRef(null);
 
-  const [activeTab, setActiveTab] = useState("home");
+  const [activeTab, setActiveTab] = useState("");
 
   useEffect(() => {
-    if (ionTabsRef.current?.ionTabContextState.activeTab !== undefined) {
-      console.log(ionTabsRef.current?.ionTabContextState.activeTab);
-      setActiveTab(ionTabsRef.current?.ionTabContextState.activeTab);
-    }
-  }, []);
+    setActiveTab(ionTabsRef.current?.ionTabContextState.activeTab);
+  }, [ionTabsRef]);
+
+  // useEffect(() => {
+  //   console.log(activeTab);
+  // }, [activeTab]);
 
   const IsActiveHomeTab = () => {
     if (activeTab === "home") {
@@ -191,7 +192,7 @@ const AppRouter = () => {
         </IonTabBar>
       </IonTabs>
       <Route path="/chat" render={() => <Chat />} exact={true} />
-      <Route path="/" render={() => <Welcome />} exact={true} />
+      <Route path="/" render={() => <Welcome />} exact={true} /> 
     </IonReactRouter>
   );
 };
