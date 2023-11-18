@@ -10,13 +10,14 @@ import { ThemeProvider } from "./contexts/themeContext.jsx";
 setupIonicReact();
 
 const App = () => {
+
   return (
     <ThemeProvider>
       <IonApp>
         <AppRouter />
       </IonApp>
     </ThemeProvider>
-  ); 
+  );
 };
 
 export default App;

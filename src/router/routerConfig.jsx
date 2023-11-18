@@ -15,6 +15,7 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import Mine from "../pages/mine/mine";
+import Welcome from "../pages/welcome/welcome";
 
 const AppRouter = () => {
   const ionTabsRef = useRef(null);
@@ -25,9 +26,9 @@ const AppRouter = () => {
     setActiveTab(ionTabsRef.current?.ionTabContextState.activeTab);
   }, [ionTabsRef]);
 
-  useEffect(() => {
-    console.log(activeTab);
-  }, [activeTab]);
+  // useEffect(() => {
+  //   console.log(activeTab);
+  // }, [activeTab]);
 
   const IsActiveHomeTab = () => {
     if (activeTab === "home") {
@@ -190,7 +191,8 @@ const AppRouter = () => {
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
-      <Route path="/chat" component={Chat} />
+      <Route path="/chat" render={() => <Chat />} exact={true} />
+      <Route path="/" render={() => <Welcome />} exact={true} /> 
     </IonReactRouter>
   );
 };

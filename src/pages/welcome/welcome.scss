@@ -1,0 +1,44 @@
+@import "../../scss/common.scss";
+
+.welcomeIonContent {
+  --background: url("src/assets/welcomeBackground_dark.jpg") no-repeat center
+    center / cover !important;
+}
+
+.welcomeTitle,
+.welcomeContent,
+.welcomeAuthor,
+.welcomeButtonText {
+  font-family: $title-font-family;
+  white-space: nowrap;
+}
+
+.welcomeContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 90%;
+}
+.welcomeTitle {
+  font-size: 32vw;
+}
+
+.welcomeContent {
+  font-size: 12vw;
+}
+
+.welcomeAuthor {
+  font-size: 40vw;
+}
+
+.welcomeButtonText {
+  font-size: 24vw;
+  color: #3dc2ff !important;
+}
+
+.alert-wrapper {
+  input,textarea {
+    color: black;
+  }
+}

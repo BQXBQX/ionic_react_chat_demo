@@ -1,8 +1,14 @@
 body.dark {
   ion-content {
-    --background: url("../assets/background1_dark.jpg") no-repeat center center / cover !important;
+    --background: url("../assets/background1_dark.jpg") no-repeat center center /
+      cover;
   }
 
+  .welcomeIonContent {
+    --background: url("src/assets/welcomeBackground_dark.jpg") no-repeat center
+      center / cover !important;
+  }
+  
   span {
     color: #f2f2f2;
   }
