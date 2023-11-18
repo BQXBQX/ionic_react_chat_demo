@@ -1,0 +1,33 @@
+@import "../../scss/common.scss";
+
+.mineAvatar {
+  height: 40vw;
+  width: 40vw;
+  img {
+    height: 40vw;
+    width: 40vw;
+  }
+}
+
+.mineMessage {
+  font-family: $title-font-family;
+  font-size: 8vw;
+}
+.userInput {
+  font-size: 14vw;
+  width: 100%;
+  flex-direction: row-reverse;
+  display: flex;
+}
+
+.mineContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+  margin-top: 2vh;
+}
+
+ion-list {
+  width: 98%;
+}

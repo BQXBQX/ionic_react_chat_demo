@@ -2,7 +2,7 @@
 
 .messageMineBar {
   flex-direction: row-reverse !important;
-  margin-left: 48px;
+  margin-left: 54px;
 
   .messageContentContainer {
     background-color: $mineMessageColor;
@@ -15,7 +15,7 @@
 }
 
 .messageOthersBar {
-  margin-right: 48px;
+  margin-right: 54px;
 
   .messageContentContainer {
     background-color: $otherMessageColor;
@@ -46,9 +46,13 @@
   }
 }
 
-img {
-  height: 48px;
-  width: 48px;
+ion-avatar {
+  height: 54px;
+  width: 54px;
+  img {
+    height: 54px;
+    width: 54px;
+  }
 }
 
 .messageSenderSpan,
@@ -62,6 +66,6 @@ span {
   // color: black !important;
 }
 
-.messageContentSpan{
+.messageContentSpan {
   color: black !important;
 }

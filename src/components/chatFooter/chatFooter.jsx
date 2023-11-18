@@ -14,7 +14,7 @@ const ChatFooter = ({ sendDataToParent, isLoading }) => {
   const [textareaValue, setTextareaValue] = useState("");
   const [presentAlert] = useIonAlert();
 
-  console.log(isLoading);
+  // console.log(isLoading);
 
   const handleButtonClick = () => {
     // 调用父组件传递过来的处理函数，并将文本内容作为参数传递

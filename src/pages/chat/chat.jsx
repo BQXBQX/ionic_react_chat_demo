@@ -16,9 +16,11 @@ import { socket, useSocket } from "../../api/socket";
 
 socket.disconnect();
 
-
 const Chat = () => {
-  const [messageID, setMessageID] = useState(22);
+  const userInputName = localStorage.getItem("userInputName");
+  const userInputAvatar = localStorage.getItem("userInputAvatar");
+  console.log(userInputName, userInputAvatar);
+  const [messageID, setMessageID] = useState(852);
   const [isLoading, setIsLoading] = useState(false);
   const [messageBarData, setMessageBarData] = useState([
     {
@@ -198,7 +200,11 @@ const Chat = () => {
   const [newMessageBar, setNewMessageBar] = useState("");
   const contentRef = useRef(null);
 
+  
+
   useEffect(() => {
+    const updatedMessageID = generateUniqueId();
+    setMessageID(updatedMessageID)
     if (contentRef.current) {
       contentRef.current.scrollToBottom();
     }
@@ -216,11 +222,6 @@ const Chat = () => {
           JSON.parse(localStorage.getItem("messageBarData")).length - 1
         ].id
       );
-      setMessageID(
-        JSON.parse(localStorage.getItem("messageBarData"))[
-          JSON.parse(localStorage.getItem("messageBarData")).length - 1
-        ].id+1
-      );
       setMessageBarData(JSON.parse(localStorage.getItem("messageBarData")));
     }
   }, []);
@@ -229,21 +230,20 @@ const Chat = () => {
     // console.log(newMessageBar);
     if (newMessageBar !== "") {
       const currentDate = new Date();
-      const formattedDateTime = currentDate.toLocaleString('en-US', {
-        weekday: 'short',
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric'
+      const formattedDateTime = currentDate.toLocaleString("en-US", {
+        weekday: "short",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
       });
       console.log(formattedDateTime);
       const newMessageBarObject = {
-        userAvatar:
-          "https://i.pinimg.com/736x/05/a3/d5/05a3d5d8ab89e1dea64f3859454a209c.jpg",
+        userAvatar: userInputAvatar,
         id: messageID,
-        messageSender: "Mike",
+        messageSender: userInputName,
         messageContent: newMessageBar,
         messageTime: formattedDateTime,
       };
@@ -253,8 +253,11 @@ const Chat = () => {
       socket.timeout(1000).emit("chatMessage", newMessageBarObject, () => {
         setIsLoading(false);
       });
-      const updatedMessageID = messageID + 1;
+      const updatedMessageID = generateUniqueId();
+      console.log(updatedMessageID);
       setMessageID(updatedMessageID);
+      // const updatedMessageID = messageID + 1;
+      // setMessageID(updatedMessageID);
       setNewMessageBar("");
     }
   }, [newMessageBar]);
@@ -263,9 +266,8 @@ const Chat = () => {
     setTimeout(() => {
       localStorage.setItem("messageBarData", JSON.stringify(messageBarData));
     }, 0);
+    contentRef.current.scrollToBottom();
   }, [messageBarData]);
-
-  useEffect(() => {});
 
   useEffect(() => {
     //从服务器里面获得发送的信息
@@ -286,6 +288,22 @@ const Chat = () => {
       socket.disconnect();
     }
   };
+
+  const usedIds = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+  ];
+
+  function generateUniqueId() {
+    let id;
+
+    do {
+      id = Math.floor(Math.random() * 1000); // 在这里设置你的 ID 范围
+    } while (usedIds.includes(id));
+
+    usedIds.push(id);
+
+    return id;
+  }
 
   return (
     <IonPage>
