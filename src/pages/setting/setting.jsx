@@ -98,18 +98,6 @@ const Setting = () => {
                 <span className="settingText">Brightness & Dark</span>
                 <IonToggle slot="end" checked={isDarkActive} onIonChange={changeTheme}></IonToggle>
               </IonItem>
-              <IonItem>
-                <span className="settingText">Dark&Brightness</span>
-                <IonToggle slot="end"></IonToggle>
-              </IonItem>
-              <IonItem>
-                <span className="settingText">Dark&Brightness</span>
-                <IonToggle slot="end"></IonToggle>
-              </IonItem>
-              <IonItem>
-                <span className="settingText">Dark&Brightness</span>
-                <IonToggle slot="end"></IonToggle>
-              </IonItem>
             </IonList>
           </div>
         </IonContent>

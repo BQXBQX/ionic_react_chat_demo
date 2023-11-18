@@ -1,12 +1,10 @@
 import { IonAvatar } from "@ionic/react";
-import './messageBar.scss'
+import "./messageBar.scss";
 
 const messageBar = (props) => {
-  const mine = "Mike";
-
+  const userInputName = localStorage.getItem("userInputName");
   return props.messageBarData.map((chatDateItem) => {
-    if (chatDateItem.messageSender === mine) {
-      console.log("hello");
+    if (chatDateItem.messageSender === userInputName) {
       return (
         <div className="messageMineBar" key={chatDateItem.id}>
           <IonAvatar>
@@ -21,7 +19,9 @@ const messageBar = (props) => {
                 {chatDateItem.messageContent}
               </span>
             </div>
-            <span className="messageDateContainer">{chatDateItem.messageTime}</span>
+            <span className="messageDateContainer">
+              {chatDateItem.messageTime}
+            </span>
           </div>
         </div>
       );
@@ -40,7 +40,9 @@ const messageBar = (props) => {
                 {chatDateItem.messageContent}
               </span>
             </div>
-            <span className="messageDateContainer">{chatDateItem.messageTime}</span>
+            <span className="messageDateContainer">
+              {chatDateItem.messageTime}
+            </span>
           </div>
         </div>
       );
@@ -48,4 +50,4 @@ const messageBar = (props) => {
   });
 };
 
-export default messageBar
+export default messageBar;

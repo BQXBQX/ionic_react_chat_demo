@@ -1,16 +1,28 @@
 import "./chat.scss";
 import {
+  IonButtons,
   IonContent,
-  IonFooter,
   IonHeader,
   IonPage,
   IonTitle,
   IonToolbar,
+  IonBackButton,
+  IonToggle,
 } from "@ionic/react";
 import MessageBar from "../../components/messageBar/messageBar";
+import ChatFooter from "../../components/chatFooter/chatFooter";
+import { useState, useEffect, useRef } from "react";
+import { socket, useSocket } from "../../api/socket";
+
+socket.disconnect();
 
 const Chat = () => {
-  const messageBarData = [
+  const userInputName = localStorage.getItem("userInputName");
+  const userInputAvatar = localStorage.getItem("userInputAvatar");
+  console.log(userInputName, userInputAvatar);
+  const [messageID, setMessageID] = useState(852);
+  const [isLoading, setIsLoading] = useState(false);
+  const [messageBarData, setMessageBarData] = useState([
     {
       userAvatar:
         "https://i.pinimg.com/originals/b4/e5/68/b4e568cfe5ed4f76cb6db22fe5e48c7d.jpg",
@@ -174,24 +186,147 @@ const Chat = () => {
       messageContent: "What is it, Lucy? Don't keep us in suspense!",
       messageTime: "2023.11.16 16:15",
     },
+    {
+      userAvatar:
+        "https://ts1.cn.mm.bing.net/th/id/R-C.6bd25412906055ad1b54c0ec57d31e90?rik=0wcsmjpPV%2bKHzQ&riu=http%3a%2f%2fp4.so.qhmsg.com%2ft01906055ad1b54c0ec.jpg&ehk=xVf4JL%2bVVBz50A2zV6nxHoZ0wOY7yBs7095Z1riZR8c%3d&risl=&pid=ImgRaw&r=0",
+      id: 21,
+      messageSender: "administrator",
+      messageContent:
+        "The above is a chat case and can be ignored, now, you can start chatting!",
+      messageTime: "2023.11.18 11:22",
+    },
+  ]);
+  const { connected, chatMessage } = useSocket();
+  const [newMessageBar, setNewMessageBar] = useState("");
+  const contentRef = useRef(null);
+
+  
+
+  useEffect(() => {
+    const updatedMessageID = generateUniqueId();
+    setMessageID(updatedMessageID)
+    if (contentRef.current) {
+      contentRef.current.scrollToBottom();
+    }
+  }, []);
+
+  const handleChildData = (data) => {
+    // 在这里处理从子组件传递过来的值
+    setNewMessageBar(data);
+  };
+
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem("messageBarData"))) {
+      console.log(
+        JSON.parse(localStorage.getItem("messageBarData"))[
+          JSON.parse(localStorage.getItem("messageBarData")).length - 1
+        ].id
+      );
+      setMessageBarData(JSON.parse(localStorage.getItem("messageBarData")));
+    }
+  }, []);
+
+  useEffect(() => {
+    // console.log(newMessageBar);
+    if (newMessageBar !== "") {
+      const currentDate = new Date();
+      const formattedDateTime = currentDate.toLocaleString("en-US", {
+        weekday: "short",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+      });
+      console.log(formattedDateTime);
+      const newMessageBarObject = {
+        userAvatar: userInputAvatar,
+        id: messageID,
+        messageSender: userInputName,
+        messageContent: newMessageBar,
+        messageTime: formattedDateTime,
+      };
+      //这里进行socket发送信息到服务器
+      // console.log(updatedMessageBarData);
+      setIsLoading(true);
+      socket.timeout(1000).emit("chatMessage", newMessageBarObject, () => {
+        setIsLoading(false);
+      });
+      const updatedMessageID = generateUniqueId();
+      console.log(updatedMessageID);
+      setMessageID(updatedMessageID);
+      // const updatedMessageID = messageID + 1;
+      // setMessageID(updatedMessageID);
+      setNewMessageBar("");
+    }
+  }, [newMessageBar]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      localStorage.setItem("messageBarData", JSON.stringify(messageBarData));
+    }, 0);
+    contentRef.current.scrollToBottom();
+  }, [messageBarData]);
+
+  useEffect(() => {
+    //从服务器里面获得发送的信息
+    if (chatMessage !== "") {
+      console.log(chatMessage);
+      const getMessageBarObject = chatMessage;
+      const updatedMessageBarData = [...messageBarData, getMessageBarObject];
+      setMessageBarData(updatedMessageBarData);
+      contentRef.current.scrollToBottom();
+    }
+  }, [chatMessage]);
+
+  const handleConnect = (event) => {
+    console.log(event.detail.checked);
+    if (event.detail.checked) {
+      socket.connect();
+    } else {
+      socket.disconnect();
+    }
+  };
+
+  const usedIds = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
   ];
+
+  function generateUniqueId() {
+    let id;
+
+    do {
+      id = Math.floor(Math.random() * 10000000); // 在这里设置你的 ID 范围
+    } while (usedIds.includes(id));
+
+    usedIds.push(id);
+
+    return id;
+  }
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Chat page</IonTitle>
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/home" text=""></IonBackButton>
+          </IonButtons>
+          <IonTitle>Chat Connected: {connected.toString()}</IonTitle>
+          <IonButtons slot="end">
+            <IonToggle onIonChange={handleConnect}></IonToggle>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
+      <IonContent ref={contentRef}>
         <div className="messageBarContainer">
           <MessageBar messageBarData={messageBarData}></MessageBar>
         </div>
       </IonContent>
-      <IonFooter>
-        <IonToolbar>
-          <IonTitle>footer</IonTitle>
-        </IonToolbar>
-      </IonFooter>
+      <ChatFooter
+        sendDataToParent={handleChildData}
+        isLoading={isLoading}
+      ></ChatFooter>
     </IonPage>
   );
 };
