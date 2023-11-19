@@ -29,7 +29,7 @@ const Home = () => {
               <span className="homeText welcome">welcome to the BQX chat!</span>
             </div>
             <br />
-            <IonRouterLink href="/chat">
+            <IonRouterLink href="/ionic_react_chat_demo/chat">
               <IonButton style={buttonStyle}>
                 <span className="buttonText">Click! To chat page!</span>
               </IonButton>

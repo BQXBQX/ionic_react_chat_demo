@@ -178,24 +178,24 @@ const AppRouter = () => {
     <IonReactRouter>
       <IonTabs ref={ionTabsRef}>
         <IonRouterOutlet>
-          <Route path="/home" render={() => <Home />} exact={true} />
-          <Route path="/setting" render={() => <Setting />} exact={true} />
-          <Route path="/mine" render={() => <Mine />} exact={true} />
+          <Route path="/ionic_react_chat_demo/home" render={() => <Home />} exact={true} />
+          <Route path="/ionic_react_chat_demo/setting" render={() => <Setting />} exact={true} />
+          <Route path="/ionic_react_chat_demo/mine" render={() => <Mine />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton className="home" tab="home" href="/home">
+          <IonTabButton className="home" tab="home" href="/ionic_react_chat_demo/home">
             <IsActiveHomeTab></IsActiveHomeTab>
           </IonTabButton>
-          <IonTabButton className="mine" tab="mine" href="/mine">
+          <IonTabButton className="mine" tab="mine" href="/ionic_react_chat_demo/mine">
             <IsActiveMineTab></IsActiveMineTab>
           </IonTabButton>
-          <IonTabButton className="setting" tab="setting" href="/setting">
+          <IonTabButton className="setting" tab="setting" href="/ionic_react_chat_demo/setting">
             <IsActiveSettingTab></IsActiveSettingTab>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
-      <Route path="/chat" render={() => <Chat />} exact={true} />
-      <Route path="/" render={() => <Welcome />} exact={true} />
+      <Route path="/ionic_react_chat_demo/chat" render={() => <Chat />} exact={true} />
+      <Route path="/ionic_react_chat_demo/" render={() => <Welcome />} exact={true} />
     </IonReactRouter>
   );
 };
