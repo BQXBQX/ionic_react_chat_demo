@@ -310,7 +310,7 @@ const Chat = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/home" text=""></IonBackButton>
+            <IonBackButton defaultHref="/ionic_react_chat_demo/home" text=""></IonBackButton>
           </IonButtons>
           <IonTitle>Chat Connected: {connected.toString()}</IonTitle>
           <IonButtons slot="end">

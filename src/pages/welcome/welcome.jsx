@@ -21,7 +21,7 @@ const Welcome = () => {
     const userName = localStorage.getItem("userInputName");
     console.log(userName);
     if (userName) {
-      history.push("/home");
+      history.push("/ionic_react_chat_demo/home");
     } else {
       setShowAlert(true);
     }
@@ -30,13 +30,17 @@ const Welcome = () => {
   const handleUserDate = () => {
     setTimeout(() => {
       setShowAlert(false);
+      console.log("已否定");
     }, 2000);
     const userInputName = alertRef.current.processedInputs[0].value;
     const userInputAge = alertRef.current.processedInputs[1].value;
     const userInputAvatar = alertRef.current.processedInputs[2].value;
-    localStorage.setItem('userInputName',userInputName)
-    localStorage.setItem('userInputAge',userInputAge)
-    localStorage.setItem('userInputAvatar',userInputAvatar)
+    if (userInputName !== undefined) {
+      localStorage.setItem("userInputName", userInputName);
+      localStorage.setItem("userInputAge", userInputAge);
+      localStorage.setItem("userInputAvatar", userInputAvatar);
+    }
+    console.log(userInputAge);
   };
 
   return (
@@ -58,6 +62,7 @@ const Welcome = () => {
         <IonAlert
           ref={alertRef}
           isOpen={showAlert}
+          onDidDismiss={() => setShowAlert(false)}
           header="Please enter your info"
           buttons={[
             {
